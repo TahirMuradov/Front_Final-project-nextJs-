@@ -1,0 +1,33 @@
+#about_main{
+    .sec_about1{
+        background-image: url("../image/about_1.webp");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        fill-opacity: inherit;
+     
+
+       
+    }
+    .sec_team{
+     .title{position: relative;
+        ::before{
+            content: "TEAM";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: -60px;
+            font-size: 135px;
+            color: #f4f4f4;
+            z-index: -4;
+        }
+     }
+     .row_user{
+        .user_box{
+         
+            padding: 0 5px;
+        }
+     }
+    }
+}
