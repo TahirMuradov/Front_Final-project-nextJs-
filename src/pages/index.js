@@ -46,19 +46,19 @@ export default function Home() {
   fade: true,
   cssEase: 'linear'
   };
-const[data,useData]=useState(null)
-useEffect(()=>{
-fetch('https://fakestoreapi.com/products')
-            .then(res=>res.json())
-            .then(json=>{
-              useData([...json])
-            })
-},[])
-useEffect(()=>{
-  window.addEventListener("load",()=>{
-    console.log("window load eventi isledi");
-  })
-},[])
+// const[data,useData]=useState(null)
+// useEffect(()=>{
+// fetch('https://fakestoreapi.com/products')
+//             .then(res=>res.json())
+//             .then(json=>{
+//               useData([...json])
+//             })
+// },[])
+// useEffect(()=>{
+//   window.addEventListener("load",()=>{
+//     console.log("window load eventi isledi");
+//   })
+// },[])
   return (
     <>
    {
