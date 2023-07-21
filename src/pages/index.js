@@ -1,5 +1,5 @@
 
-import { Inter } from 'next/font/google'
+import { Cookie, Inter } from 'next/font/google'
 import React, { useEffect, useState } from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,24 +7,22 @@ import Slider from "react-slick";
 import { faChevronRight, faGlobe, faLocationDot, faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
-import AOS from 'aos';
-import "aos/dist/aos.css";
-import ProductCart from './UI/ProductCart';
+import { useRef } from 'react';
+import { useRouter } from 'next/router';
+import Oclok from '@/components/UI/oclok/Oclok';
+import { setCookie } from 'cookies-next';
+
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-//  setInterval(()=>{
+const mainRef=useRef(null);
+const sliderRef=useRef(null);
 
-// },3000)
-// useEffect(()=>{
-//   AOS.init({
-//   duration:200,
-//   once:false,
-//   })
-// },[])
+const ThemeValue = useSelector((state) => state.darkSlice.ThemeValue);
 
-  const themeState = useSelector((state) => state.darkSlice.value);
+setCookie("themeValue",ThemeValue)
   var settings = {
     dots: false,
     infinite: true,
@@ -59,14 +57,21 @@ export default function Home() {
 //     console.log("window load eventi isledi");
 //   })
 // },[])
+
+useEffect(()=>{
+ThemeValue?mainRef.current.classList.add("darkMode"):mainRef.current.classList.remove("darkMode")
+  ThemeValue? sliderRef.current.classList.add("darkMode"):sliderRef.current.classList.remove("darkMode")
+})
+
+
   return (
     <>
    {
    
-<main className={`home_main${themeState=="dark"?"darkMode":""} `}>
+<main ref={mainRef} className={`home_main`}>
   <section id='slider_sections'>
 
-<div className={`w-full h-auto bg-[#EEEEEE] ${themeState=="dark"?"darkMode":""}`}>
+<div ref={sliderRef} className={`w-full h-auto bg-[#5c5858da]`}>
   <div className="w-[50%] m-auto">
   <Slider {...settings} className='text-center'>
 <div className='text-center'>
@@ -167,7 +172,7 @@ export default function Home() {
       <hr />
     </h3>
 
-        <p className='text-[#c94250] text-[72px] h-[1.5]'>SUBA</p>
+        <p className='text-[#46b45e] text-[72px] h-[1.5]'>SUBA</p>
         <p className='text-[16px] text-[#FFF] h-[1.4] py-3'>
         Supa wanted something that was going to rep his East Coast
         <br />
@@ -186,10 +191,7 @@ export default function Home() {
 </div>
 
   </section>
-   <section className='items_show w-[100%] h-auto'>
-    <ProductCart/>
-
-   </section>
+ <Oclok/>
 
 </main>
 

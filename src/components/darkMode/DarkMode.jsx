@@ -1,32 +1,51 @@
 import { darkmodeActions } from "@/redux/darkmodeSlice";
-import React from "react";
+import { getCookie, setCookie } from "cookies-next";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const DarkMode = () => {
+//   const moon=document.querySelector(".moon")    
+// const sun=document.querySelector(".sun") 
+// const sunRef=useRef(null)
+// const moonRef=useRef(null)
+// if (themeState=="dark") {
+//   moonRef.current.style.left="0"
+// }
   const dispatch = useDispatch();
-  const themeState = useSelector((state) => state.darkSlice.value);
-
-  const TOGGLE = () => {
-    const BUTTON = document.querySelector(".toggle");
-    const SYNC = document.querySelector("#sync");
-    const IS_PRESSED = BUTTON.matches("[aria-pressed=true]");
  
-    if (SYNC.checked)
-      document.body.setAttribute("data-dark-mode", IS_PRESSED ? false : true);
-    BUTTON.setAttribute("aria-pressed", IS_PRESSED ? false : true);
-let mode;
-if (themeState=="dark") {
-  mode="ligth"
-}else if(themeState==="ligth")
-{
-  mode="dark"
-}
+  const ThemeValue = useSelector((state) => state.darkSlice.ThemeValue);
+
+
+  const btnRef=useRef(null)
+useEffect(()=>{
+ 
+
+
+
+if(ThemeValue)
+  { 
+    btnRef.current.classList.add("darkmod_btn")}
+
+},[])
+  const TOGGLE = () => {
+    console.log(ThemeValue);
+    
+        if (btnRef.current.classList.contains("darkmod_btn")) {
+      btnRef.current.classList.remove("darkmod_btn")
+     }
+     else{
+      btnRef.current.classList.add("darkmod_btn")
+
+     }
+ 
+
 
     dispatch(
       darkmodeActions.darkTheme({
-        mode
+  value:!ThemeValue
       })
       );
+  
   };
   return (
     <>
@@ -35,8 +54,9 @@ if (themeState=="dark") {
         <input id="sync" type="checkbox" />
       </div>
       <button
+      ref={btnRef}
         className="toggle"
-        aria-pressed="false"
+        // aria-pressed={`${ThemeValue=='dark'?"false":"true"}`}
         title="Toggle Dark Mode"
         onClick={() => TOGGLE()}
       >
@@ -81,7 +101,7 @@ if (themeState=="dark") {
           <span className="toggle__indicator-wrapper">
             <span className="toggle__indicator">
               <span className="toggle__star">
-                <span className="sun">
+                <span className="sun" >
                   <span className="moon">
                     <span className="moon__crater"></span>
                     <span className="moon__crater"></span>

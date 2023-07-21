@@ -20,10 +20,7 @@
   --color: hsl(219 30% 20%);
 }
 
-[data-dark-mode=true] {
-  --bg: hsl(219, 30%, 12%);
-  --color: hsl(219 30% 98%);
-}
+
 
 
 
@@ -221,7 +218,7 @@
 }
 
 .toggle__indicator-wrapper {
-	position: absolute;
+position: sticky;
 	inset: 0;
 	transition: translate var(--speed) var(--slide-ease);
 	translate: calc(
@@ -229,8 +226,14 @@
 	) 0;
 }
 
-[aria-pressed=true] {
+/* [aria-pressed=true] {
 	--dark: 1;
+} */
+.darkmod_btn {
+	--dark: 1;
+}
+.ligth_mode_btn{
+	--dark:0;
 }
 
 /* Fun stuff! */

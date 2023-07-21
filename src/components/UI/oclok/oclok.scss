@@ -1,0 +1,76 @@
+.clock__wrapper{
+background-image: url("../../../image/3_d76fe6af-e867-447e-8073-70cbfd2a8f53_x1024.webp");
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+    background-color:#0A1D39;
+
+    width: 100%;
+
+    height: 40vh;
+
+    padding:40px 0;
+
+    color: #fff !important;
+
+  padding-left: 20px;
+
+  position: relative;
+
+    .clock__button{
+
+         margin:19px 0 0 0;
+
+         padding: 10px 10px;
+
+         background-color: #F1EFF1;
+
+         font-size: 13px;
+
+         border: 1px solid black;
+
+    }
+
+
+
+
+    .counterImg{
+
+         display: none;
+
+    }
+
+  @media(min-width:768px){
+
+     .counterImg{
+
+         display: flex;
+
+         justify-content: center;
+
+         height: 40vh;
+
+         position: absolute;
+
+         top: 0;
+
+         right: 90px;
+
+        img{
+
+         width: 100%;
+
+         height: 100%;
+
+        }
+
+
+
+
+    }
+
+  }  
+
+  
+
+}

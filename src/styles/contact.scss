@@ -1,0 +1,69 @@
+.form {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    input {
+      margin-block: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 10px;
+
+
+    }
+
+    input:focus {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      outline-offset: 0px;
+      outline: none;
+    }
+
+    .inp1 {
+      border-radius: 30px;
+      width: 45%;
+    }
+
+    .inp2 {
+      border-radius: 30px;
+
+      width: 45%;
+    }
+
+    .inp3 {
+      border-radius: 30px;
+
+      width: 100%;
+    }
+
+    #message {
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 10px;
+      margin-block: 10px;
+
+    }
+
+    textarea:focus {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      outline-offset: 0px;
+      outline: none;
+    }
+
+    button {
+      background-color: #4ED38F;
+      padding: 10px 3rem;
+      outline: none;
+      outline-offset: 0px;
+      border-radius: 30px;
+      color: white;
+      margin-block: 10px;
+      border: none;
+    }
+
+  }
+  .darkModeFilter{
+    filter: invert(100%);
+  }

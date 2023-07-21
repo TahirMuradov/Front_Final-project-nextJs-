@@ -1,21 +1,55 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../image/logo.webp";
-
+import logo_white from "../../image/logo-white.webp";
+import Router, { useRouter } from 'next/router';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCartShopping, faHeart, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCartShopping, faComment, faHeart, faX } from "@fortawesome/free-solid-svg-icons";
 import DarkMode from "../darkMode/DarkMode";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import useReadingProgress from "../progressScrool/useReadingProgress";
+import Loading from "../../pages/loading/loading";
+import { multilaungeActions } from "@/redux/multiaungeSlice";
+import Chat from "../miniChat/Chat";
+
 const Header = () => {
-  const themeState = useSelector((state) => state.darkSlice.value);
+  const ThemeValue = useSelector((state) => state.darkSlice.ThemeValue);
+
   let clikcCounter=0
   const navMenuRef=useRef(null);
   const navBarsRef=useRef(null);
   const navXRef=useRef(null);
   const gotoTOPbtn=useRef(null);
+  const headerRef=useRef(null);
+  const dispatch=useDispatch();
+const linkRef=useRef([{}]);
+  const [loading,setLoading]=useState(false);
+ 
+const routersLi=[
+  {
+displey:"Home",
+pathName:"/"
+},
+{
+  displey:"Shop",
+pathName:"/shop"
+},
+{
+  displey:"About",
+pathName:"/about"
+},
+{
+  displey:"Contact",
+pathName:"/contact"
+},
+]
+
+  useEffect(()=>{
+
+    ThemeValue?headerRef.current.classList.add("darkMode"):headerRef.current.classList.remove("darkMode")
+  
+  },[ThemeValue])
 
   const nav_menu_responsive=()=>{
 clikcCounter++;
@@ -43,6 +77,7 @@ useEffect(()=>{
     };
 },[])
   function scrollFunction() {
+    document.body.style.tarnsition="1s"
     if (
       document.body.scrollTop > 20 ||
       document.documentElement.scrollTop > 20
@@ -65,20 +100,41 @@ useEffect(()=>{
   function backToTop() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+  
   }
   const completion = useReadingProgress();
+ Router.events.on("routeChangeStart",(url)=>{
+ setLoading(true)
+document.querySelector("body").style.overflow="hidden"
+})
+  Router.events.on("routeChangeComplete",()=>{
+    setLoading(false)
+document.querySelector("body").style.overflow="auto"
+
+  })
+  const stateLaunge=useSelector((state)=>state.multilanguage.launge)
+const selectedLaunge=(e)=>{
+const launge=e.target.value;
+dispatch(
+  multilaungeActions.changeLaunguage({
+   value:launge
+  })
+)
+
+}
 
   return (<>
-    <header id="header" className={`w-full h-auto sticky z-[999] ${themeState=="dark"?"darkMode":""}`}>
+    <header ref={headerRef} id="header" className={`w-full h-auto sticky z-10`}>
       <header id="top_header" className="lg:flex justify-between mx-[5px] hidden ">
 <div className="info_locations">
   <span>460 West 34th Street, 15th floor, New York - Hotline: 804-377-3580 - 804-399-3580</span>
 </div>
 <div className="rigth">
   <button className="px-[5px]"> Login&Register</button>
-  <select name="" id="">
-    <option value="">USD$</option>
-    <option value="">AZN₼</option>
+  <select name="" id="" onChange={selectedLaunge}>
+    <option value="az">Az</option>
+    <option value="tr">Tr</option>
+    <option value="en">En</option>
 
   </select>
 </div>
@@ -88,24 +144,21 @@ useEffect(()=>{
         <div className="flex justify-between items-center">
           <div className="logo w-[15%]">
             <Link href="/">
-              <Image src={logo} className="w-full" />
+              <Image src={ThemeValue?logo_white:logo} className="w-full" />
             </Link>
           </div>
           <div ref={navMenuRef} className="nav-menu absolute lg:sticky top-[100%] left-0 transition-[1s,ease] w-[0] lg:w-[20%]  lg:h-auto invisible opacity-0 lg:visible lg:opacity-[1]">
             <ul className="flex flex-col lg:flex-row w-full h-auto p-[10%]">
-              <li  className="p-2 w-full h-auto text-center">
-                <Link href="/">Home</Link>
-              </li>
-              <li className="p-2 w-full h-auto text-center">
-                <Link href="/shop">Shop</Link>
-              </li>
-              <li className="p-2 w-full h-auto text-center">
-                <Link href="/about">About</Link>
-              </li>
-              <li className="p-2 w-full h-auto text-center">
-             
-                <Link href="/contact">Contact</Link>
-              </li>
+           
+             {
+           
+              routersLi.map((route,index)=>(
+                  <li key={index}  className="p-2 w-full h-auto text-center">
+                  <Link ref={linkRef} key={index} href={`${route.pathName}`} >{route.displey}</Link>
+
+                </li>
+              ))
+             }
             </ul>
           </div>
           <div className="nav-icons flex items-center justify-center">
@@ -134,13 +187,16 @@ useEffect(()=>{
    
     </header>
    
-    <button ref={gotoTOPbtn} onClick={backToTop}  type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className="inline-block p-3 bg-[#4ED38F] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md  hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5" id="btn-back-to-top">
+    <button ref={gotoTOPbtn} onClick={backToTop}  type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className=" z-20 inline-block p-3 bg-[#4ED38F] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md  hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  transition duration-150 ease-in-out bottom-5 right-5" id="btn-back-to-top">
   <svg aria-hidden="true" focusable="false" data-prefix="fas" className="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+
 </button>
 <span
         style={{ transform: `translateX(${completion - 100}%)` }}
-        className="fixed bg-[#4ED38F] h-1 w-full bottom-0 right-0"
+        className="fixed bg-[#4ED38F] h-1 w-full bottom-0 right-0 z-[9999]"
       />
+{loading && <Loading/>}
+<Chat/>
   </>
   );
 };

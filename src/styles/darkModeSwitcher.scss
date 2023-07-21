@@ -1,8 +1,11 @@
 
 .darkMode{
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     h1,h2,h3,h4,h5,p,span,a,button{
         color: #fff;
     }
     
+}
+.eror_img_dark{
+    filter: brightness(0.5);
 }
