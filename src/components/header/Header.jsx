@@ -12,9 +12,15 @@ import useReadingProgress from "../progressScrool/useReadingProgress";
 import Loading from "../../pages/loading/loading";
 import { multilaungeActions } from "@/redux/multiaungeSlice";
 import Chat from "../miniChat/Chat";
+import az from "../../pages/api/az.json"
+import tr from "../../pages/api/tr.json"
+import en from "../../pages/api/en.json"
 
 const Header = () => {
   const ThemeValue = useSelector((state) => state.darkSlice.ThemeValue);
+  const Launge = useSelector((state) => state.multilanguage.launge);
+  const withListCount = useSelector((state) => state.withList.totalAmount);
+
 
   let clikcCounter=0
   const navMenuRef=useRef(null);
@@ -25,25 +31,7 @@ const Header = () => {
   const dispatch=useDispatch();
 const linkRef=useRef([{}]);
   const [loading,setLoading]=useState(false);
- 
-const routersLi=[
-  {
-displey:"Home",
-pathName:"/"
-},
-{
-  displey:"Shop",
-pathName:"/shop"
-},
-{
-  displey:"About",
-pathName:"/about"
-},
-{
-  displey:"Contact",
-pathName:"/contact"
-},
-]
+
 
   useEffect(()=>{
 
@@ -75,7 +63,7 @@ useEffect(()=>{
   window.onscroll = function () {
       scrollFunction();
     };
-},[])
+},[Launge])
   function scrollFunction() {
     document.body.style.tarnsition="1s"
     if (
@@ -103,7 +91,7 @@ useEffect(()=>{
   
   }
   const completion = useReadingProgress();
- Router.events.on("routeChangeStart",(url)=>{
+ Router.events.on("routeChangeStart",()=>{
  setLoading(true)
 document.querySelector("body").style.overflow="hidden"
 })
@@ -121,6 +109,11 @@ dispatch(
   })
 )
 
+
+
+
+
+
 }
 
   return (<>
@@ -130,12 +123,11 @@ dispatch(
   <span>460 West 34th Street, 15th floor, New York - Hotline: 804-377-3580 - 804-399-3580</span>
 </div>
 <div className="rigth">
-  <button className="px-[5px]"> Login&Register</button>
+  <button className="px-[5px]"> {az.LoginAndRegister}</button>
   <select name="" id="" onChange={selectedLaunge}>
     <option value="az">Az</option>
     <option value="tr">Tr</option>
     <option value="en">En</option>
-
   </select>
 </div>
       </header>
@@ -152,7 +144,7 @@ dispatch(
            
              {
            
-              routersLi.map((route,index)=>(
+              az.header.pages.map((route,index)=>(
                   <li key={index}  className="p-2 w-full h-auto text-center">
                   <Link ref={linkRef} key={index} href={`${route.pathName}`} >{route.displey}</Link>
 
@@ -163,7 +155,7 @@ dispatch(
           </div>
           <div className="nav-icons flex items-center justify-center">
             <div className="heart_box relative cursor-pointer">
-<span className="absolute left-[41%] top-[-10%]">1</span>
+<span className="absolute left-[41%] top-[-10%]">{withListCount}</span>
           <FontAwesomeIcon icon={faHeart} className="p-3 text-[30px] text-[#4ed38f]"/>
             </div>
             <div className="cart_box relative cursor-pointer">

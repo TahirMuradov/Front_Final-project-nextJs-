@@ -8,21 +8,21 @@ import { faChevronRight, faGlobe, faLocationDot, faPhoneVolume } from '@fortawes
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
 import { useRef } from 'react';
-import { useRouter } from 'next/router';
 import Oclok from '@/components/UI/oclok/Oclok';
-import { setCookie } from 'cookies-next';
+import { getServerSideProps } from '../pages/api/hello.js';
+import ProductCart from '@/components/UI/ProductCart.jsx';
+
+
 
 
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({data}) {
 const mainRef=useRef(null);
 const sliderRef=useRef(null);
 
 const ThemeValue = useSelector((state) => state.darkSlice.ThemeValue);
-
-setCookie("themeValue",ThemeValue)
   var settings = {
     dots: false,
     infinite: true,
@@ -44,19 +44,7 @@ setCookie("themeValue",ThemeValue)
   fade: true,
   cssEase: 'linear'
   };
-// const[data,useData]=useState(null)
-// useEffect(()=>{
-// fetch('https://fakestoreapi.com/products')
-//             .then(res=>res.json())
-//             .then(json=>{
-//               useData([...json])
-//             })
-// },[])
-// useEffect(()=>{
-//   window.addEventListener("load",()=>{
-//     console.log("window load eventi isledi");
-//   })
-// },[])
+
 
 useEffect(()=>{
 ThemeValue?mainRef.current.classList.add("darkMode"):mainRef.current.classList.remove("darkMode")
@@ -192,7 +180,13 @@ ThemeValue?mainRef.current.classList.add("darkMode"):mainRef.current.classList.r
 
   </section>
  <Oclok/>
-
+<div className="grid grid-cols-3">
+{
+    data?.map((item)=>(
+      <ProductCart data={item} key={item.id}/>
+    ))
+   }
+</div>
 </main>
 
    }
@@ -202,3 +196,4 @@ ThemeValue?mainRef.current.classList.add("darkMode"):mainRef.current.classList.r
 
   )
 }
+export {getServerSideProps};

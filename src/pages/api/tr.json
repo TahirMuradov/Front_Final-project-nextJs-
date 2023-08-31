@@ -1,0 +1,50 @@
+{
+    "header": {
+        "LoginAndRegister": "Giriş Yap veya Kayıt Ol",
+        "locations": "Compar Academy, Zərgərpalan, Bakü",
+        "pages": [
+            {
+                "display": "Ana Sayfa",
+                "pathName": "/home"
+            },
+            {
+                "display": "Mağaza",
+                "pathName": "/shop"
+            },
+            {
+                "display": "Hakkımızda",
+                "pathName": "/about"
+            },
+            {
+                "display": "İletişim",
+                "pathName": "/contact"
+            }
+        ]
+    },
+    "footer": {
+        "pages": [
+            {
+                "name": "Şimdi Alışveriş Yap",
+                "link": "/shop"
+            },
+            {
+                "name": "Hakkımızda",
+                "link": "/about"
+            },
+            {
+                "name": "İletişim",
+                "link": "/contact"
+            },
+            {
+                "name": "Sepetinizi Kontrol Edin",
+                "link": "/cart"
+            }
+        ],
+        "locations":[
+            {
+                "office1": "Compar Academy, Zərgərpalan, Bakü",
+                "office2": "Compar Academy, Akademisyen Həsən Əliyev Caddesi, Bakü"
+            }
+        ]
+    }
+}

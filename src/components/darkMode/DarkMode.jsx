@@ -27,8 +27,10 @@ if(ThemeValue)
     btnRef.current.classList.add("darkmod_btn")}
 
 },[])
+ setCookie("themeValue",ThemeValue)
   const TOGGLE = () => {
-    console.log(ThemeValue);
+
+
     
         if (btnRef.current.classList.contains("darkmod_btn")) {
       btnRef.current.classList.remove("darkmod_btn")
@@ -45,7 +47,7 @@ if(ThemeValue)
   value:!ThemeValue
       })
       );
-  
+ 
   };
   return (
     <>

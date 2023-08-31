@@ -3,5 +3,10 @@
     "paths": {
       "@/*": ["./src/*"]
     }
+  },
+"  module.exports" : {
+   " images": {
+      "domains": ["fakestoreapi.com"],
+    },
   }
 }

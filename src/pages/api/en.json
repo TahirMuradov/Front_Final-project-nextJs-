@@ -1,0 +1,52 @@
+{
+   
+        "header": {
+            "LoginAndRegister": "Log in or Register",
+            "locations": "Compar Academy, Zergerpalan, Baku",
+            "pages": [
+                {
+                    "display": "Home",
+                    "pathName": "/home"
+                },
+                {
+                    "display": "Shop",
+                    "pathName": "/shop"
+                },
+                {
+                    "display": "About",
+                    "pathName": "/about"
+                },
+                {
+                    "display": "Contact",
+                    "pathName": "/contact"
+                }
+            ]
+        },
+        "footer": {
+            "pages": [
+                {
+                    "name": "Shop Now",
+                    "link": "/shop"
+                },
+                {
+                    "name": "About",
+                    "link": "/about"
+                },
+                {
+                    "name": "Contact",
+                    "link": "/contact"
+                },
+                {
+                    "name": "Check Your Cart",
+                    "link": "/cart"
+                }
+            ],
+            "locations":[
+                {
+                    "office1": "Compar Academy, Zergerpalan, Baku",
+                    "office2": "Compar Academy, Academician Hasan Aliyev Street, Baku"
+                }
+            ]
+        }
+    }
+    

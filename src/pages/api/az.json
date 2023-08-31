@@ -1,0 +1,51 @@
+{
+    "header": {
+        "LoginAndRegister": "Daxil ol veya Qeydiyyatdan Kec",
+        "locations": "Compar Academy, Zərgərpalan, Bakı",
+        "pages": [
+            {
+                "displey": "Əsas Səhifə",
+                "pathName": "/home"
+            },
+            {
+                "displey": "Mağaza",
+                "pathName": "/shop"
+            },
+            {
+                "displey": "Haqqımızda",
+                "pathName": "/about"
+            },
+            {
+                "displey": "Əlaqə",
+                "pathName": "/contact"
+            }
+        ]
+    },
+    "footer": {
+        "pages": [
+            {
+                "name": "İndi Alış-veriş Et",
+                "link": "/shop"
+            },
+            {
+                "name": "Haqqımızda",
+                "link": "/about"
+            },
+            {
+                "name": "Əlaqə",
+                "link": "/contact"
+            },
+            {
+                "name": "Səbətinizi Yoxlayın",
+                "link": "/cart"
+            }
+        ],
+      "locations":[
+  {
+   "office1": "Compar Academy, Zərgərpalan, Bakı",
+   "office2":"Compar Academy, Academician Həsən Əliyev küçəsi, Bakı"
+  }
+    ]
+    }
+
+}
