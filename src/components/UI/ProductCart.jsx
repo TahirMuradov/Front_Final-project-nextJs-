@@ -15,18 +15,18 @@ const disPatch= useDispatch()
   const heartPlusRef= useRef(null)
    const withsListState=useSelector((state)=>state.withList.withListItem);
 
-   useEffect(()=>{
-   console.log(withsListState);
-
-   },[withsListState])
+   let withListClick=0;
   const addToWithList=()=>{
+    console.log(withListClick)
+ 
     disPatch(withListActions.withListItemAddDelet({
       id:data.id,
       title:data.title,
       price:data.price,
       image:data.image
     }))
-toast.success("Elave edildi")
+    toast.success(`${data.title} Mehsulu Istek Siyahisina Elave olundu`)
+    withListClick++;
   }
   return (
   
@@ -34,7 +34,7 @@ toast.success("Elave edildi")
     <div className="product__item border-collapse">
     <Link href={`/productdetail/${data.title}/${data.id}`}>
         <div className="product__img">
-          <Image src={data.image} className=' object-cover object-center'width={343} height={490}/>
+          <Image src={data.image}  width={400} height={490}/>
         </div>
         <div className="product__info p-2">
             <h3 className="product__name">{data.productName}</h3>

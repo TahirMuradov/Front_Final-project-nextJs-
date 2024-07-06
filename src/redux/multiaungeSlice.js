@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState={
-    launge:"az"
+    launge:"en"
 }
 
 const multilaungeSlice=createSlice({

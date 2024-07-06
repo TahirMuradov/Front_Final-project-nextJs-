@@ -156,7 +156,11 @@ dispatch(
           <div className="nav-icons flex items-center justify-center">
             <div className="heart_box relative cursor-pointer">
 <span className="absolute left-[41%] top-[-10%]">{withListCount}</span>
+<Link href={'/withList'}>
+
+
           <FontAwesomeIcon icon={faHeart} className="p-3 text-[30px] text-[#4ed38f]"/>
+</Link>
             </div>
             <div className="cart_box relative cursor-pointer">
 

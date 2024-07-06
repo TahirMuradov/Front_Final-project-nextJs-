@@ -98,7 +98,7 @@ const Chat = () => {
       <div ref={chatRef} id="chat" className="active w-[350px] fixed bottom-[15px] right-[5%] md:right-[10%] z-[999]">
         <header className="p-[15px] bg-[#4ED38F] text-white">
           <div className="flex justify-between">
-            <span>Let’s chat? - We're online</span>
+            <span>Let&#8217;s chat? - We're online</span>
 
             <div
               ref={closeChatRef}

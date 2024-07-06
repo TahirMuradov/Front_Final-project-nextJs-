@@ -11,7 +11,7 @@ const Oclok = () => {
    let interval;
   
   const countDown=()=>{
-    const destionation=new Date("August 15, 2023").getTime() 
+    const destionation=new Date("December 15, 2023").getTime() 
   
     /*hansi tarixe qeder davam edirse onu yaziriq ve yazilis beledi:: 1-ci:: ayi---gun--il::
     .getTime()-- verdiyimiz tarixe qeder olan Millisaniyyeni qaytarir ve destination adina == edir
